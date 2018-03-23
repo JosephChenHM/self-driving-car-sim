@@ -128,6 +128,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public float CurrentSpeed{ get { return m_Rigidbody.velocity.magnitude * 2.23693629f; } }
 
         public float MaxSpeed{ get { return m_Topspeed; } }
+		
+		public Vector3 getPosition{ get { return transform.position; } }
 
         public float Revs { get; private set; }
 
@@ -425,7 +427,7 @@ namespace UnityStandardAssets.Vehicles.Car
 				string leftPath = WriteImage (LeftCamera, "left", sample.timeStamp);
 				string rightPath = WriteImage (RightCamera, "right", sample.timeStamp);
 
-				string row = string.Format ("{0},{1},{2},{3},{4},{5},{6}\n", centerPath, leftPath, rightPath, sample.steeringAngle, sample.throttle, sample.brake, sample.speed);
+				string row = string.Format ("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}\n", centerPath, leftPath, rightPath, sample.steeringAngle, sample.throttle, sample.brake, sample.speed, sample.position.x, sample.position.y, sample.position.z);
 				File.AppendAllText (Path.Combine (m_saveLocation, CSVFileName), row);
 			}
 			if (carSamples.Count > 0) {
